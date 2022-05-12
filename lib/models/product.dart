@@ -24,7 +24,7 @@ List<Product> products = [
   ),
   Product(
     id: 4,
-    price: 68,
+    price: 69,
     title: "Poppy Plastic Tub Chair",
     image: "assets/images/Item_2.png",
     description:
