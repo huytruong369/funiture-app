@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furiture_app/constants.dart';
+import 'package:furiture_app/models/product.dart';
 import 'package:furiture_app/screens/details/components/body.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({Key? key}) : super(key: key);
+  final Product product;
+  const DetailsScreen({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColor,
-      body: const Body(),
+      body: Body(
+        product: product,
+      ),
       appBar: buildAppbar(context),
     );
   }

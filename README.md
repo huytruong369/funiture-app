@@ -17,3 +17,9 @@ We design two pages one is the product page with a search bar at the top then th
 ![Preview](/gif.gif)
 
 ![App UI](/ui.png)
+
+## Done 
+### Home Screen
+![Done](/flutter_01.png)
+### Detail Screen
+![Done](/flutter_02.png)

@@ -42,7 +42,9 @@ class Body extends StatelessWidget {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) {
-                            return const DetailsScreen();
+                            return DetailsScreen(
+                              product: products[index],
+                            );
                           },
                         ),
                       );

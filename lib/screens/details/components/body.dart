@@ -1,49 +1,74 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furiture_app/constants.dart';
+import 'package:furiture_app/models/product.dart';
+import 'package:furiture_app/screens/details/components/chat_and_add_to_card.dart';
+import 'package:furiture_app/screens/details/components/list_of_colors.dart';
+import 'package:furiture_app/screens/details/components/product_poster.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  final Product product;
+  const Body({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: kDefaultPadding,
-      ),
-      decoration: const BoxDecoration(
-        color: kBackgroundColor,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(50),
-          bottomRight: Radius.circular(50),
-        ),
-      ),
+    return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            alignment: Alignment.center,
             width: double.infinity,
-            height: size.width * 0.8,
-            margin: const EdgeInsets.symmetric(vertical: kDefaultPadding),
-            child: Stack(
+            padding: const EdgeInsets.symmetric(
+              horizontal: kDefaultPadding,
+            ),
+            decoration: const BoxDecoration(
+              color: kBackgroundColor,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(50),
+                bottomRight: Radius.circular(50),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: size.width * .7,
-                  width: size.width * .7,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
+                Center(
+                  child: Hero(
+                    child: ProductPoster(image: product.image),
                   ),
                 ),
-                Image.asset(
-                  'assets/images/Item_2.png',
-                  height: size.width * .7,
-                  width: size.width * .7,
-                  fit: BoxFit.cover,
+                const ListOfColors(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: kDefaultPadding / 2,
+                  ),
+                  child: Text(
+                    product.title,
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
                 ),
+                Text(
+                  '\$${product.price}',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: kSecondaryColor,
+                  ),
+                ),
+                Text(
+                  product.description,
+                  textAlign: TextAlign.justify,
+                  style: const TextStyle(
+                    color: kTextLightColor,
+                  ),
+                ),
+                const SizedBox(height: kDefaultPadding),
               ],
             ),
           ),
+          const ChatAndAddToCart(),
         ],
       ),
     );
